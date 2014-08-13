@@ -1,2 +1,5 @@
-Rails.application.routes.draw do
+NewspressoForum::Engine.routes.draw do
+  resources :topics do
+    resources :posts
+  end
 end
