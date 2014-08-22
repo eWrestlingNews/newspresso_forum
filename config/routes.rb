@@ -1,5 +1,8 @@
 NewspressoForum::Engine.routes.draw do
+  resources :comments
+
+  root 'topics#index'
   resources :topics do
-    resources :posts
+    resources :comments
   end
 end

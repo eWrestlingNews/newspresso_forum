@@ -9,6 +9,7 @@ module NewspressoForum
 
     # GET /topics/1
     def show
+      @new_comment = @topic.comments.build
     end
 
     # GET /topics/new
@@ -54,7 +55,7 @@ module NewspressoForum
 
       # Only allow a trusted parameter "white list" through.
       def topic_params
-        params.require(:topic).permit(:title, :text)
+        params.require(:topic).permit(:title, :body, :tag_list)
       end
   end
 end

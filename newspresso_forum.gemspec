@@ -7,11 +7,6 @@ require "newspresso_forum/version"
 Gem::Specification.new do |s|
   s.name        = "newspresso_forum"
   s.version     = NewspressoForum::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of NewspressoForum."
-  s.description = "TODO: Description of NewspressoForum."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]

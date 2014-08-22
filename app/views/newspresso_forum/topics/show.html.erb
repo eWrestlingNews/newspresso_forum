@@ -6,9 +6,21 @@
 </p>
 
 <p>
-  <strong>Text:</strong>
-  <%= @topic.text %>
+  <strong>Content:</strong>
+  <%= @topic.body %>
 </p>
 
-<%= link_to 'Edit', edit_topic_path(@topic) %> |
+<% @topic.comments.each do |comment| %>
+  <p><%= comment.body %></p>
+<% end %>
+
+<p>
+<strong>Create a new comment:</strong>
+<%= form_for [@topic, @new_comment] do |f| %>
+   <%= f.text_area :body %>
+   <%= f.hidden_field :topic_id, value: @topic.id %>
+   <%= f.submit "Post Comment" %>
+<% end %>
+</p>
+
 <%= link_to 'Back', topics_path %>
