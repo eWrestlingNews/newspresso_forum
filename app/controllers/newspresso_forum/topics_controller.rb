@@ -1,5 +1,6 @@
 module NewspressoForum
-  class TopicsController < ApplicationController
+  class TopicsController < ::ApplicationController
+    authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
     # GET /topics
@@ -24,6 +25,7 @@ module NewspressoForum
     # POST /topics
     def create
       @topic = Topic.new(topic_params)
+      @topic.user = current_user
 
       if @topic.save
         redirect_to @topic, notice: 'Topic was successfully created.'

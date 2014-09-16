@@ -1,5 +1,6 @@
 module NewspressoForum
-  class CommentsController < ApplicationController
+  class CommentsController < ::ApplicationController
+    authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic
     before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
@@ -24,6 +25,7 @@ module NewspressoForum
     # POST /comments
     def create
       @comment = Comment.new(comment_params)
+      @comment.user = current_user
 
       if @comment.save
         redirect_to @topic
