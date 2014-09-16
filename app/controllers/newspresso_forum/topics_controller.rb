@@ -1,5 +1,6 @@
 module NewspressoForum
-  class TopicsController < ApplicationController
+  class TopicsController < ::ApplicationController
+    authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
     # GET /topics
