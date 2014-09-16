@@ -1,0 +1,48 @@
+- content_for :content do
+  .row
+    .content-wrap.columns.medium-10.large-10
+      .panel
+        .content
+          .forum-menu
+            %select.right
+              %option{:value => "husker"} all categories 
+              %option{:value => "starbuck"} Starbuck
+              %option{:value => "hotdog"} Hot Dog
+              %option{:value => "apollo"} Apollo
+            %ul.button-group.left
+              %li= link_to "Latest", "#", class: "button primary"
+              %li= link_to "Top", "#", class: "button"
+          %table.borderless.forum-table
+            %thead
+              %tr
+                %th Topic
+                %th.text-center Replies
+                / %th{:colspan => "3"}
+            %tbody
+              - @topics.each do |topic|
+                %tr
+                  %td
+                    .topic-tags.right
+                      - topic.tags.each do |tag|
+                        = link_to tag.name, "#", class: "label secondary"
+                    .topic-title
+                      = link_to topic.title, topic
+                    .topic-meta
+                      - if topic.user.present?
+                        Posted by
+                        = topic.user.id
+                  %td.text-center
+                    = topic.comments.count
+                  / %td= link_to 'Show', topic
+                  / %td= link_to 'Edit', edit_topic_path(topic)
+                  / %td= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }
+
+            / = paginate @topics, :param_name => :p
+
+    - desktop_only do
+      .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2
+        .ad-widget.tower-ad
+          = image_tag "http://placehold.it/160x600"
+
+
+= link_to 'New Topic', new_topic_path, class: "button"
