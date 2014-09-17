@@ -1,23 +1,59 @@
-= form_for(@topic) do |f|
-  - if @topic.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@topic.errors.count, "error")
-        prohibited this topic from being saved:
-      %ul
-        - @topic.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :title
-    %br
-      = f.text_field :title
-  .field
-    = f.label :body
-    %br
-      = f.text_area :body
-  .field
-    = f.label :tag_list
-    %br
-      = f.text_area :tag_list
-  .actions
-    = f.submit
+.posts.new
+  = form_for @topic, html: {class: 'form post-form', data: {abide: true}} do |f|
+    %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}
+    .row
+      .content-wrap.columns.large-9
+        .panel
+          .header.clearfix
+            %h4.left= "%s" % [request.url =~ /\/new\Z/ ? "Create New Topic" : "Edit Topic"]
+            - if @topic.id.present?
+              = link_to "View Topic", @topic, class: "button small right"
+          .content
+            .row
+              .columns
+                - if @topic.errors.any?
+                  .error-messages
+                    %h2
+                      = pluralize(@topic.errors.count, "error")
+                      prohibited this topic from being saved:
+                    %ul
+                      - @topic.errors.full_messages.each do |message|
+                        %li= message
+                .field
+                  %h5 Title:
+                  = f.text_field :title, placeholder: "Enter your title", value: @topic.title, required: true
+                  %small.error Please enter a title
+                .content-blocks
+                  .block.text-item{type: "text", data: {height: 250}}
+                    %h5 Summary
+                    = find_and_preserve "<textarea class='content-body' id='topic_body' name='topic[body]' style='min-height:80px' required>#{@topic.body}</textarea>"
+            .row
+              .columns.large-8
+                .field
+                  %h5 Tags (comma-separated):
+                  %input.post-tags-input{id: "#{@topic}_tag_list", name: "#{@topic}[tag_list]", type: "text", placeholder: "Enter comma-separated list of tags", value: @topic.tag_list, required: true}
+                  %small.error Please enter some tags
+            .row
+              .columns.large-6.medium-6
+                - if @topic.id.present?
+                  %a.button.publish-post.primary Update Topic
+                - else
+                  %a.button.publish-post.primary Create Topic
+
+      .sidebar-wrap.columns.large-3
+
+/ .posts.new
+/   = form_for(@topic) do |f|
+/     - if @topic.errors.any?
+/       %h2
+/         = pluralize(@topic.errors.count, "error")
+/         prohibited this topic from being saved:
+/       %ul
+/         - @topic.errors.full_messages.each do |message|
+/           %li= message
+/     .field
+/       = f.label :tag_list
+/       %br
+/         = f.text_area :tag_list
+/     .actions
+/       = f.submit
