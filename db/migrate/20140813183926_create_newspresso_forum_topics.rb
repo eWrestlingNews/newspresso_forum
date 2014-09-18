@@ -4,6 +4,7 @@ class CreateNewspressoForumTopics < ActiveRecord::Migration
       t.string :title
       t.text :body
       t.references :user
+      t.string :slug
       t.timestamps
     end
   end
