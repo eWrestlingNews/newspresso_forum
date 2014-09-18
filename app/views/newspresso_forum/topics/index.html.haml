@@ -4,14 +4,15 @@
       .panel
         .content
           .forum-menu
+            / .button.primary Create New Topic
+            %ul.button-group.left
+              %li= link_to "Latest", "#", class: "button primary"
+              %li= link_to "Top", "#", class: "button"
             %select.right
               %option{:value => "husker"} all categories 
               %option{:value => "starbuck"} Starbuck
               %option{:value => "hotdog"} Hot Dog
               %option{:value => "apollo"} Apollo
-            %ul.button-group.left
-              %li= link_to "Latest", "#", class: "button primary"
-              %li= link_to "Top", "#", class: "button"
           %table.borderless.forum-table
             %thead
               %tr
@@ -30,7 +31,7 @@
                     .topic-meta
                       - if topic.user.present?
                         Posted by
-                        = topic.user.id
+                        = link_to topic.user.nickname, topic.user
                   %td.text-center
                     = topic.comments.count
                   / %td= link_to 'Show', topic

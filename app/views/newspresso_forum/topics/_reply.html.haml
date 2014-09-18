@@ -2,7 +2,7 @@
   .columns.show-for-large-up.medium-2.large-1.topic-user
     - if resource.user.present?
       = link_to "#", class: "th" do
-        = user_image_tag(current_user, {width: 60, height: 60})
+        = user_image_tag(resource.user, {width: 60, height: 60})
   .columns.large-11.topic-content
     .topic-meta.clearfix
       - if resource.user.present?
@@ -14,6 +14,7 @@
               = user_image_tag(current_user, {width: 18, height: 18})
               = resource.user.name
       .right
-        23 hours ago
+        - if resource.created_at.present?
+          = time_ago_in_words(resource.created_at) + " ago"
     %p
       = raw(resource.body)
