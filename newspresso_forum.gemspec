@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'acts_as_taggable_on'
   s.add_dependency 'punching_bag'
+  s.add_dependency 'friendly_id'
 
   s.add_development_dependency "sqlite3"
 end

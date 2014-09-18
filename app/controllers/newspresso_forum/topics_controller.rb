@@ -11,6 +11,7 @@ module NewspressoForum
     # GET /topics/1
     def show
       @new_comment = @topic.comments.build
+      @topic.punch
     end
 
     # GET /topics/new
@@ -52,7 +53,7 @@ module NewspressoForum
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_topic
-        @topic = Topic.find(params[:id])
+        @topic = Topic.friendly.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
