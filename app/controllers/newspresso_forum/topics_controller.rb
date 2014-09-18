@@ -8,6 +8,12 @@ module NewspressoForum
       @topics = Topic.all
     end
 
+    # GET /topics
+    def by_tag
+      @topics = Topic.tagged_with(params[:tag])
+      render :index
+    end
+
     # GET /topics/1
     def show
       @new_comment = @topic.comments.build

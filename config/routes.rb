@@ -5,4 +5,6 @@ NewspressoForum::Engine.routes.draw do
   resources :topics do
     resources :comments
   end
+
+  get '/topics/tagged/:tag', to: 'topics#by_tag'
 end
