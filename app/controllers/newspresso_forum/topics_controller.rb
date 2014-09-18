@@ -3,8 +3,6 @@ module NewspressoForum
     authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
-    acts_as_punchable
-
     # GET /topics
     def index
       @topics = Topic.all
