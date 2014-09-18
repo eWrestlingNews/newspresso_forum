@@ -31,7 +31,7 @@
                     .topic-meta
                       - if topic.user.present?
                         Posted by
-                        = link_to topic.user.nickname, topic.user
+                        = link_to topic.user.nickname, main_app.user_path(topic.user)
                   %td.text-center
                     = topic.comments.count
                   / %td= link_to 'Show', topic
