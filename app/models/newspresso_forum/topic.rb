@@ -8,7 +8,19 @@ module NewspressoForum
     acts_as_taggable
     acts_as_punchable
 
-    friendly_id :title, use: :slugged
+    friendly_id :slug_candidates, use: :slugged
+
+    def slug_candidates
+      [
+        :title,
+        [:title, :increment_slug]
+      ]
+
+    end
+
+    def increment_slug
+      self.class.where(title: self.title).count + 1
+    end
 
     validates_presence_of :body, :title
   end
