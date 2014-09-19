@@ -6,5 +6,6 @@ NewspressoForum::Engine.routes.draw do
     resources :comments
   end
 
-  get '/topics/tagged/:tag', to: 'topics#by_tag'
+  get '/topics/page/:page', to: 'topics#index'
+  get '/topics/tagged/:tag(/:page)', to: 'topics#index'
 end

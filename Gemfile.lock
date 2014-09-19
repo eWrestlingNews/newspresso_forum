@@ -4,6 +4,7 @@ PATH
     newspresso_forum (0.0.1)
       acts_as_taggable_on
       friendly_id
+      kaminari
       punching_bag
       rails (~> 4.1.4)
 
@@ -47,6 +48,9 @@ GEM
     httpclient (2.4.0)
     i18n (0.6.11)
     json (1.8.1)
+    kaminari (0.16.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     mime-types (2.3)

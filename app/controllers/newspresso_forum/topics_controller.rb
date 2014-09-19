@@ -5,13 +5,16 @@ module NewspressoForum
 
     # GET /topics
     def index
-      @topics = Topic.all
-    end
-
-    # GET /topics
-    def by_tag
-      @topics = Topic.tagged_with(params[:tag])
-      render :index
+      page   = (params[:page] || 1).to_i
+      offset = (params[:per] || 50).to_i
+      @topics = \
+        case params[:tag]
+        when nil
+          Topic.all
+        else
+          Topic.tagged_with(params[:tag])
+        end
+      @topics = @topics.order("updated_at desc").page(page).per(offset)
     end
 
     # GET /topics/1
@@ -32,6 +35,7 @@ module NewspressoForum
     # POST /topics
     def create
       @topic = Topic.new(topic_params)
+      @topic.tag_list = params[]
       @topic.user = current_user
 
       if @topic.save
