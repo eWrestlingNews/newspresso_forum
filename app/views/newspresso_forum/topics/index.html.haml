@@ -38,7 +38,9 @@
                   / %td= link_to 'Edit', edit_topic_path(topic)
                   / %td= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }
 
-            / = paginate @topics, :param_name => :p
+          = link_to "Create New Topic", new_topic_path, class: "button success"
+
+          / = paginate @topics, :param_name => :p
 
     - desktop_only do
       .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2
