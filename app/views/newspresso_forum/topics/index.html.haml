@@ -9,10 +9,7 @@
               %li= link_to "Latest", "#", class: "button primary"
               %li= link_to "Top", "#", class: "button"
             %select.right
-              %option{:value => "husker"} all categories
-              %option{:value => "starbuck"} Starbuck
-              %option{:value => "hotdog"} Hot Dog
-              %option{:value => "apollo"} Apollo
+              = options_for_select(@categories)
           %table.borderless.forum-table
             %thead
               %tr

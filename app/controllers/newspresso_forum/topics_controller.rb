@@ -12,6 +12,7 @@ module NewspressoForum
         else
           Topic.tagged_with(params[:tag])
         end
+      @categories = Topic.tag_counts.order("count desc").limit(10)
       @topics = @topics.order("updated_at desc").page(params[:page])
     end
 
