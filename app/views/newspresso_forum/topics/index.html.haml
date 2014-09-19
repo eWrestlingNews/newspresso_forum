@@ -9,7 +9,7 @@
               %li= link_to "Latest", "#", class: "button primary"
               %li= link_to "Top", "#", class: "button"
             %select.right
-              %option{:value => "husker"} all categories 
+              %option{:value => "husker"} all categories
               %option{:value => "starbuck"} Starbuck
               %option{:value => "hotdog"} Hot Dog
               %option{:value => "apollo"} Apollo
@@ -37,10 +37,9 @@
                   / %td= link_to 'Show', topic
                   / %td= link_to 'Edit', edit_topic_path(topic)
                   / %td= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }
-
+          = paginate @topics, :param_name => :page
           = link_to "Create New Topic", new_topic_path, class: "button success"
 
-          / = paginate @topics, :param_name => :p
 
     - desktop_only do
       .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2

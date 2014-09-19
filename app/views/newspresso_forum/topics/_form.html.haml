@@ -31,7 +31,7 @@
               .columns.large-8
                 .field
                   %h5 Tags (comma-separated):
-                  %input.post-tags-input{id: "#{@topic}_tag_list", name: "#{@topic}[tag_list]", type: "text", placeholder: "Enter comma-separated list of tags", value: @topic.tag_list, required: true}
+                  %input.post-tags-input{id: "topic_tag_list", name: "topic[tag_list]", type: "text", placeholder: "Enter comma-separated list of tags", value: @topic.tag_list, required: true}
                   %small.error Please enter some tags
             .row
               .columns.large-6.medium-6

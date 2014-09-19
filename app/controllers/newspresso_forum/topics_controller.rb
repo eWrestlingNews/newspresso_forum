@@ -1,12 +1,10 @@
 module NewspressoForum
   class TopicsController < ::ApplicationController
-    # authorize_resource only: [:new, :edit, :update, :create]
+    authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
     # GET /topics
     def index
-      page   = (params[:page] || 1).to_i
-      offset = (params[:per] || 50).to_i
       @topics = \
         case params[:tag]
         when nil
@@ -14,7 +12,7 @@ module NewspressoForum
         else
           Topic.tagged_with(params[:tag])
         end
-      @topics = @topics.order("updated_at desc").page(page).per(offset)
+      @topics = @topics.order("updated_at desc").page(params[:page])
     end
 
     # GET /topics/1
@@ -35,7 +33,6 @@ module NewspressoForum
     # POST /topics
     def create
       @topic = Topic.new(topic_params)
-      @topic.tag_list = params[]
       @topic.user = current_user
 
       if @topic.save
