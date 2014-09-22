@@ -34,7 +34,7 @@
                 = form_for [@topic, @new_comment] do |f|
                   = f.text_area :body
                   = f.hidden_field :topic_id, value: @topic.id
-                  = f.submit "Post Comment", class: "button small primary"
+                  = f.submit "Post Reply", class: "button small primary"
               - else
                 %h5 Post a Reply
                 %p Sign in to post a reply.
