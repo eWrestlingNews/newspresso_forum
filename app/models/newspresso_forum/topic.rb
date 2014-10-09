@@ -63,5 +63,11 @@ module NewspressoForum
     def topic_expiration
       AppConfig['TOPIC_EXPIRATION_DAYS'] || 14
     end
+
+    class << self
+      def categories
+        AppConfig['TOPIC_CATEGORIES'].split(',')
+      end
+    end
   end
 end
