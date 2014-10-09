@@ -12,6 +12,14 @@ module NewspressoForum
 
     validates_presence_of :body, :title
 
+    def close!
+      update_attribute(:closed, true)
+    end
+
+    def open!
+      update_attribute(:closed, false)
+    end
+
     #
     # Tests if the topic is in an expired state
     #
