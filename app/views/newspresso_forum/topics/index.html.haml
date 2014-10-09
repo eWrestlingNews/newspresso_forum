@@ -4,9 +4,9 @@
       .panel
         %dl.tabs
           %select.forum-tag-select.right{onchange: "this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"}
-            %option{selected: ("selected" unless @category.present?)} All Categories
+            %option{value: "/discuss/", selected: ("selected" unless @category.present?)} All Categories
             - @categories.each do |category|
-              %option{value: "/discuss/topics/tagged/#{category.parameterize}", selected: ("selected" if @category.present? && @category == category)}= category
+              %option{value: "/discuss/topics/tagged/#{category.parameterize}", selected: ("selected" if @category.present? && @category == category.parameterize)}= category
           %dd{ class: ("active" unless params[:order_by] == 'top') }
             = link_to "Latest", "/discuss/latest"
           %dd{ class: ("active" if params[:order_by] == 'top') }
