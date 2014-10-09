@@ -2,10 +2,11 @@ module NewspressoForum
   class TopicsController < ::ApplicationController
     authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic, only: [:show, :edit, :update, :destroy]
+    before_action :set_categories
 
     # GET /topics
     def index
-      @tag = params[:tag]
+      @category = params[:tag]
       @topics = \
         case @tag
         when nil
@@ -13,7 +14,6 @@ module NewspressoForum
         else
           Topic.tagged_with(@tag)
         end
-      @categories = Topic.tag_counts.order("count desc").limit(10)
       @topics = @topics.order("updated_at desc").page(params[:page])
     end
 
@@ -63,6 +63,10 @@ module NewspressoForum
       # Use callbacks to share common setup or constraints between actions.
       def set_topic
         @topic = Topic.friendly.find(params[:id])
+      end
+
+      def set_categories
+        @categories = Topic.categories
       end
 
       # Only allow a trusted parameter "white list" through.

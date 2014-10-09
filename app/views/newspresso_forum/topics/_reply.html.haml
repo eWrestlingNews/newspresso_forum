@@ -20,7 +20,7 @@
             %li
               = time_ago_in_words(resource.created_at) + " ago"
           - if resource.user.present? && resource.user == current_user
-            %li= link_to "Edit", resource
+            %li= link_to "Edit", polymorphic_url(resource, :action => 'edit')
           %li
             = link_to "#", "##{resource.id}"
     %p

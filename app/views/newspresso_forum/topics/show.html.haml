@@ -22,22 +22,28 @@
       .reply-form.panel
         .content
           .row
-            .columns.show-for-large-up.medium-2.large-1
-              - if current_user.present?
-                = link_to "#", class: "user-image th trackEvent", data: {name: "Clicked Profile Pic in nav bar"} do
-                  = user_image_tag(current_user, {width: 60, height: 60})
-            .columns.large-11
-              - if current_user.present?
-                %h5
-                  Reply as
-                  = current_user.name
-                = form_for [@topic, @new_comment] do |f|
-                  = f.text_area :body
-                  = f.hidden_field :topic_id, value: @topic.id
-                  = f.submit "Post Reply", class: "button small primary"
-              - else
-                %h5 Post a Reply
-                %p Sign in to post a reply.
+            - if @topic.expired?
+              .columns.show-for-large-up.medium-2.large-1
+              .columns.large-11
+                %h5 Topic Closed
+                %p This topic has been closed.
+            - else
+              .columns.show-for-large-up.medium-2.large-1
+                - if current_user.present?
+                  = link_to "#", class: "user-image th trackEvent", data: {name: "Clicked Profile Pic in nav bar"} do
+                    = user_image_tag(current_user, {width: 60, height: 60})
+              .columns.large-11
+                - if current_user.present?
+                  %h5
+                    Reply as
+                    = current_user.name
+                  = form_for [@topic, @new_comment] do |f|
+                    = f.text_area :body
+                    = f.hidden_field :topic_id, value: @topic.id
+                    = f.submit "Post Reply", class: "button small primary"
+                - else
+                  %h5 Post a Reply
+                  %p Sign in to post a reply.
 
     - desktop_only do
       .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2
