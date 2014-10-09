@@ -8,11 +8,11 @@ module NewspressoForum
     def index
       @category = params[:tag]
       @topics = \
-        case @tag
+        case @category
         when nil
           Topic.all
         else
-          Topic.tagged_with(@tag)
+          Topic.tagged_with(@category)
         end
       @topics = @topics.order("updated_at desc").page(params[:page])
     end
