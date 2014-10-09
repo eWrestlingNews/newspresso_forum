@@ -56,7 +56,7 @@ module NewspressoForum
       end
 
       def set_topic
-        @topic = Topic.find(params[:topic_id])
+        @topic = Topic.friendly.find(params[:topic_id])
       end
 
       # Only allow a trusted parameter "white list" through.

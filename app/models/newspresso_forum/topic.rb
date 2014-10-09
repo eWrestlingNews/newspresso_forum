@@ -65,6 +65,10 @@ module NewspressoForum
     end
 
     class << self
+      #
+      # List categories available to tag topics with
+      #
+      # @return [Array] List of categories, set from AppConfig['TOPIC_CATEGORIES']
       def categories
         AppConfig['TOPIC_CATEGORIES'].split(',')
       end
