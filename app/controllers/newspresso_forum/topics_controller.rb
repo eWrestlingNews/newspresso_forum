@@ -5,12 +5,13 @@ module NewspressoForum
 
     # GET /topics
     def index
+      @tag = params[:tag]
       @topics = \
-        case params[:tag]
+        case @tag
         when nil
           Topic.all
         else
-          Topic.tagged_with(params[:tag])
+          Topic.tagged_with(@tag)
         end
       @categories = Topic.tag_counts.order("count desc").limit(10)
       @topics = @topics.order("updated_at desc").page(params[:page])

@@ -2,19 +2,22 @@
   .row
     .content-wrap.columns.medium-10.large-10
       .panel
+        %dl.tabs
+          %select.forum-tag-select.right{onchange: "this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"}
+            %option{selected: ("selected" unless @tag.present?)} All Categories
+            = @categories.each do |category|
+              %option{value: "/discuss/topics/tagged/#{category.name}", selected: ("selected" if @tag.present? && @tag == category.name)}= category.name.titleize
+          %dd{ class: ("active" unless params[:order_by] == 'top') }
+            = link_to "Latest", "/discuss/latest"
+          %dd{ class: ("active" if params[:order_by] == 'top') }
+            = link_to "Top", "/discuss/top"
         .content
-          .forum-menu
-            / .button.primary Create New Topic
-            %ul.button-group.left
-              %li= link_to "Latest", "#", class: "button primary"
-              %li= link_to "Top", "#", class: "button"
-            %select.right
-              = options_for_select(@categories)
           %table.borderless.forum-table
             %thead
               %tr
                 %th Topic
                 %th.text-center Replies
+                %th.text-center Views
                 / %th{:colspan => "3"}
             %tbody
               - @topics.each do |topic|
@@ -22,15 +25,17 @@
                   %td
                     .topic-tags.right
                       - topic.tags.each do |tag|
-                        = link_to tag.name, "#", class: "label secondary"
+                        = link_to tag.name, "/discuss/topics/tagged/#{tag}", class: "label secondary"
                     .topic-title
                       = link_to topic.title, topic
                     .topic-meta
                       - if topic.user.present?
-                        Posted by
+                        Started by
                         = link_to topic.user.nickname, main_app.user_path(topic.user)
                   %td.text-center
                     = topic.comments.count
+                  %td.text-center
+                    Views
                   / %td= link_to 'Show', topic
                   / %td= link_to 'Edit', edit_topic_path(topic)
                   / %td= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }

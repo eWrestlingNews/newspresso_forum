@@ -1,20 +1,27 @@
+%a{name: resource.id, id: resource.id}
 .row.topic-reply
   .columns.show-for-large-up.medium-2.large-1.topic-user
     - if resource.user.present?
-      = link_to "#", class: "th" do
+      = link_to main_app.user_path(resource.user), class: "th" do
         = user_image_tag(resource.user, {width: 60, height: 60})
   .columns.large-11.topic-content
     .topic-meta.clearfix
       - if resource.user.present?
         .left
           .show-for-large-up
-            = link_to resource.user.name, "#"
+            = link_to resource.user.name, main_app.user_path(resource.user)
           .hide-for-large-only
-            = link_to "#" do
+            = link_to main_app.user_path(resource.user) do
               = user_image_tag(current_user, {width: 18, height: 18})
               = resource.user.name
       .right
-        - if resource.created_at.present?
-          = time_ago_in_words(resource.created_at) + " ago"
+        %ul.no-bullet.inline-list
+          - if resource.created_at.present?
+            %li
+              = time_ago_in_words(resource.created_at) + " ago"
+          - if resource.user.present? && resource.user == current_user
+            %li= link_to "Edit", resource
+          %li
+            = link_to "#", "##{resource.id}"
     %p
       = raw(resource.body)

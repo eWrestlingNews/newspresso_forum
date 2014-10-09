@@ -6,19 +6,18 @@
           = link_to "Forums", topics_path
         %li.current
           = link_to @topic.title, @topic
-      .panel
-        .content
-          .topic-tags.right
-            %div Posted in:
-            - @topic.tags.each do |tag|
-              = link_to tag.name, "#", class: "label secondary"
-          %h3.topic-title= @topic.title
-          %ul.no-bullet.topic-replies
-            %li.parent
-              = render partial: "reply", locals: {resource: @topic} 
-            - @topic.comments.each do |comment|
-              %li
-                = render partial: "reply", locals: {resource: comment} 
+      .topic-title
+        .topic-tags.right
+          %div Posted in:
+          - @topic.tags.each do |tag|
+            = link_to tag.name, "#", class: "label secondary"
+        %h3= @topic.title
+      %ul.no-bullet.topic-replies
+        %li.parent
+          = render partial: "reply", locals: {resource: @topic} 
+        - @topic.comments.each do |comment|
+          %li
+            = render partial: "reply", locals: {resource: comment} 
 
       .reply-form.panel
         .content
@@ -35,7 +34,7 @@
                 = form_for [@topic, @new_comment] do |f|
                   = f.text_area :body
                   = f.hidden_field :topic_id, value: @topic.id
-                  = f.submit "Post Comment", class: "button small primary"
+                  = f.submit "Post Reply", class: "button small primary"
               - else
                 %h5 Post a Reply
                 %p Sign in to post a reply.
