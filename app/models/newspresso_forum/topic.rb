@@ -70,7 +70,7 @@ module NewspressoForum
       #
       # @return [Array] List of categories, set from AppConfig['TOPIC_CATEGORIES']
       def categories
-        AppConfig['TOPIC_CATEGORIES'].split(',')
+        AppConfig['TOPIC_CATEGORIES'].split(',').sort
       end
     end
   end
