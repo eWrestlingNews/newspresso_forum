@@ -12,8 +12,6 @@ module NewspressoForum
 
     validates_presence_of :body, :title
 
-    has_merit
-
     def close!
       update_attribute(:closed, true)
     end
