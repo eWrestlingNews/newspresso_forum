@@ -37,6 +37,7 @@ module NewspressoForum
       @topic = Topic.new(topic_params)
       @topic.user = current_user
 
+      current_user.add_points(10)
       if @topic.save
         redirect_to @topic, notice: 'Topic was successfully created.'
       else

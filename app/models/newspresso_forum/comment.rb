@@ -4,5 +4,7 @@ module NewspressoForum
     belongs_to :topic, touch: true
 
     validates_presence_of :body
+
+    has_merit
   end
 end
