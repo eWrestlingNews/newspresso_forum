@@ -19,7 +19,6 @@ module NewspressoForum
 
     # GET /topics/1
     def show
-      @new_comment = @topic.comments.build
       @topic.punch
     end
 
