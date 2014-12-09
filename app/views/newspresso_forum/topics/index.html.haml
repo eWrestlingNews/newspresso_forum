@@ -35,7 +35,7 @@
                   %td.text-center
                     = topic.comments.count
                   %td.text-center
-                    Views
+                    = topic.hits
                   / %td= link_to 'Show', topic
                   / %td= link_to 'Edit', edit_topic_path(topic)
                   / %td= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' }
