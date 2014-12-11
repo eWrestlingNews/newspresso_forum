@@ -8,7 +8,9 @@ Gem::Specification.new do |s|
   s.name        = "newspresso_forum"
   s.version     = NewspressoForum::VERSION
   s.license     = "MIT"
-
+  s.authors     = ['Chris DiMartino', 'Monji Dolan']
+  s.summary     = "Forum engine for Newspresso"
+  
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
