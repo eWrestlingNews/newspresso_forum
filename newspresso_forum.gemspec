@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.1.4"
 
-  s.add_dependency 'acts_as_taggable_on'
+  s.add_dependency 'acts-as-taggable-on', '~> 3.4.2'
   s.add_dependency 'punching_bag'
   s.add_dependency 'friendly_id'
   s.add_dependency 'kaminari'
