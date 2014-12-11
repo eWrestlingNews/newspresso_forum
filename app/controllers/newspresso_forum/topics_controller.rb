@@ -37,7 +37,7 @@ module NewspressoForum
       @topic.user = current_user
 
       if @topic.save
-        current_user.add_points(10)
+        award_points(10)
         redirect_to @topic, notice: 'Topic was successfully created.'
       else
         render :new

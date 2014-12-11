@@ -28,7 +28,7 @@ module NewspressoForum
       @comment.user = current_user
 
       if @comment.save
-        current_user.add_points(5)
+        award_points(5)
         redirect_to @topic
       else
         render :new
