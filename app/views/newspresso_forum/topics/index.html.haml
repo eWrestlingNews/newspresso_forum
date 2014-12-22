@@ -19,9 +19,9 @@
             / - @categories.each do |category|
             /   %option{value: "/discuss/topics/tagged/#{category.parameterize}", selected: ("selected" if @category.present? && @category == category.parameterize)}= category
           %dd{ class: ("active" unless params[:order_by] == 'top') }
-            = link_to "Latest", "/discuss/latest"
+            = link_to "Latest", "/discuss/topics/latest"
           %dd{ class: ("active" if params[:order_by] == 'top') }
-            = link_to "Top", "/discuss/top"
+            = link_to "Top", "/discuss/topics/top"
         .content
           %table.borderless.forum-table
             %thead

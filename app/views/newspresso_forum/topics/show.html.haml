@@ -1,7 +1,7 @@
 - content_for :content do
   .row.topic
     .content-wrap.columns.medium-10.large-10
-      - if (can? :moderate, @topic)
+      - if (can? :close!, @topic)
         .dropdown-link.right
           = link_to 'Mod', "#", class: "button tiny alert", style: "margin: 0;"
           %ul.dropdown-menu
@@ -32,7 +32,7 @@
       .reply-form.panel
         .content
           .row
-            - if @topic.expired?
+            - if @topic.expired? || @topic.closed?
               .columns.show-for-large-up.medium-2.large-1
               .columns.large-11
                 %h5 Topic Closed
