@@ -59,6 +59,21 @@ module NewspressoForum
       redirect_to topics_url, notice: 'Topic was successfully destroyed.'
     end
 
+    def close
+      @topic.close!
+      redirect_to @topic
+    end
+
+    def open
+      @topic.open!
+      redirect_to @topic
+    end
+
+    def unexpire
+      @topic.unexpire!
+      redirect_to @topic
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_topic
