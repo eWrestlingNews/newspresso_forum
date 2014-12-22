@@ -5,22 +5,11 @@
         %dl.tabs
           %select.forum-tag-select.right{onchange: "this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"}
             %option{value: "/discuss/", selected: ("selected" unless @category.present?)} All Categories
-            %option{:value => "/discuss/topics/tagged/wwe"} WWE
-            %option{:value => "/discuss/topics/tagged/raw"} - RAW
-            %option{:value => "/discuss/topics/tagged/smackdown"} - SmackDown
-            %option{:value => "/discuss/topics/tagged/main-event"} - Main Event
-            %option{:value => "/discuss/topics/tagged/tna"} TNA
-            %option{:value => "/discuss/topics/tagged/impact"} - iMPACT
-            %option{:value => "/discuss/topics/tagged/ppv"} PPV
-            %option{:value => "/discuss/topics/tagged/mma-ufc"} UFC/MMA
-            %option{:value => "/discuss/topics/tagged/roh"} ROH
-            %option{:value => "/discuss/topics/tagged/indie"} Indie
-            %option{:value => "/discuss/topics/tagged/tea-lounge"} Tea Lounge
-            / - @categories.each do |category|
-            /   %option{value: "/discuss/topics/tagged/#{category.parameterize}", selected: ("selected" if @category.present? && @category == category.parameterize)}= category
-          %dd{ class: ("active" unless params[:order_by] == 'top') }
+            - ["WWE", "- RAW", "- SmackDown", "- Main Event", "TNA", "- iMPACT", "PPV", "MMA/UFC", "ROH", "Indie", "Tea Lounge"].each do |category|
+              %option{value: "/discuss/topics/tagged/#{category.gsub('- ','').parameterize}", selected: ("selected" if @category.present? && @category == category.gsub('- ','').parameterize)}= category
+          %dd{ class: ("active" unless params[:action] == 'top') }
             = link_to "Latest", "/discuss/topics/latest"
-          %dd{ class: ("active" if params[:order_by] == 'top') }
+          %dd{ class: ("active" if params[:action] == 'top') }
             = link_to "Top", "/discuss/topics/top"
         .content
           %table.borderless.forum-table
