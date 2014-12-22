@@ -1,0 +1,9 @@
+.posts.new
+  = form_for [topic, topic.comments.build] do |f|
+    .post-form
+      %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}
+      .content-blocks
+        .block.text-item{type: "text", data: {height: 100}}
+          = find_and_preserve "<textarea class='content-body' id='comment_body' name='comment[body]' style='min-height:80px' required></textarea>"
+      = f.hidden_field :topic_id, value: topic.id
+      = f.submit "Post Reply", class: "button small primary"

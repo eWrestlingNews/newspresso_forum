@@ -37,10 +37,7 @@
                   %h5
                     Reply as
                     = current_user.name
-                  = form_for [@topic, @topic.comments.build] do |f|
-                    = f.text_area :body
-                    = f.hidden_field :topic_id, value: @topic.id
-                    = f.submit "Post Reply", class: "button small primary"
+                  = render partial: "reply_form", locals: {topic: @topic}
                 - else
                   %h5 Post a Reply
                   %p Sign in to post a reply.
