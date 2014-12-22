@@ -1,7 +1,7 @@
 - content_for :content do
   .row.topic
     .content-wrap.columns.medium-10.large-10
-      - if (can? :close!, @topic)
+      - if (can? :manage, @topic)
         .dropdown-link.right
           = link_to 'Mod', "#", class: "button tiny alert", style: "margin: 0;"
           %ul.dropdown-menu

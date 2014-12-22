@@ -71,17 +71,17 @@ module NewspressoForum
 
     def close
       @topic.close!
-      redirect_to @topic
+      redirect_to @topic, notice: "This topic has been closed"
     end
 
     def open
       @topic.open!
-      redirect_to @topic
+      redirect_to @topic, notice: "This topic has been reopened"
     end
 
     def unexpire
       @topic.unexpire!
-      redirect_to @topic
+      redirect_to @topic, notice: "Topic has been marked unexpired"
     end
 
     private
