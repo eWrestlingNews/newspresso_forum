@@ -6,6 +6,8 @@ module NewspressoForum
 
     # GET /topics
     def index
+      @title = "Wrestling Forums, WWE Forum, TNA, iMPACT, UFC/MMA Forums"
+      @keywords = "Wrestling Forums, WWE Forum, TNA, iMPACT, UFC/MMA Forums"
       @category = params[:tag]
       @topics = \
         case @category
@@ -18,11 +20,15 @@ module NewspressoForum
     end
 
     def latest
+      @title = "Latest discussions on wrestling, WWE news, TNA, iMPACT and UFC/MMA"
+      @keywords = "Wrestling Forums, WWE Forum, TNA, iMPACT, UFC/MMA Forums"
       @topics = Topic.order("created_at desc").includes(:tags).page(params[:page])
       render :index
     end
 
     def top
+      @title = "Top discussions on wrestling, WWE news, TNA, iMPACT and UFC/MMA"
+      @keywords = "Wrestling Forums, WWE Forum, TNA, iMPACT, UFC/MMA Forums"
       @topics = Topic.most_hit.includes(:tags).page(params[:page])
       render :index
     end
@@ -30,6 +36,8 @@ module NewspressoForum
     # GET /topics/1
     def show
       @topic.punch
+      @title = @topic.title
+      @keywords = [@topic.tag_list, @topic.title].join(', ')
     end
 
     # GET /topics/new

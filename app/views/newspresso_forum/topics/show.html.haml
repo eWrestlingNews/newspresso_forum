@@ -36,7 +36,7 @@
               .columns.show-for-large-up.medium-2.large-1
               .columns.large-11
                 %h5 Topic Closed
-                %p This topic has been closed.
+                %p This topic has been closed and replies are no longer permitted.
             - else
               .columns.show-for-large-up.medium-2.large-1
                 - if current_user.present?
@@ -58,4 +58,5 @@
           = image_tag "http://placehold.it/160x600"
 
 
+- set_page_meta(@title, @title, @keywords)
 = link_to 'New Topic', new_topic_path, class: "button"
