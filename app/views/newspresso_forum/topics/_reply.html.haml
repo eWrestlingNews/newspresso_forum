@@ -8,12 +8,9 @@
     .topic-meta.clearfix
       - if resource.user.present?
         .left
-          .show-for-large-up
-            = link_to resource.user.name, main_app.user_path(resource.user)
-          .hide-for-large-only
-            = link_to main_app.user_path(resource.user) do
-              = user_image_tag(current_user, {width: 18, height: 18})
-              = resource.user.name
+          = link_to main_app.user_path(resource.user) do
+            = user_image_tag(current_user, {width: 18, height: 18, class: "hide-for-large-up"})
+            = resource.user.name
       .right
         %ul.no-bullet.inline-list{style: "overflow:visible;"}
           - if resource.created_at.present?
