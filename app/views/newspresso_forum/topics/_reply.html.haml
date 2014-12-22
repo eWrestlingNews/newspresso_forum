@@ -15,11 +15,11 @@
               = user_image_tag(current_user, {width: 18, height: 18})
               = resource.user.name
       .right
-        %ul.no-bullet.inline-list
+        %ul.no-bullet.inline-list{style: "overflow:visible;"}
           - if resource.created_at.present?
             %li
               = time_ago_in_words(resource.created_at) + " ago"
-          - if resource.user.present? && resource.user == current_user
+          - if (can? :edit, resource)
             %li= link_to "Edit", polymorphic_url(resource, :action => 'edit')
           %li
             = link_to "#", "##{resource.id}"
