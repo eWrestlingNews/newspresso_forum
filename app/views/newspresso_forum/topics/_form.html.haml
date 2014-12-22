@@ -31,7 +31,7 @@
               .columns.large-8
                 .field
                   %h5 Category:
-                  %select.post-tags-input{id: "topic_tag_list", name: "topic[tag_list]", type: "text", placeholder: "Enter comma-separated list of tags", required: true}
+                  %select.post-category-input{id: "topic_tag_list", name: "topic[tag_list]", type: "text", placeholder: "Enter comma-separated list of tags", required: true}
                     - @categories.each do |category|
                       %option{value: category.parameterize, selected: ("selected" if @topic.tag_list == category)}= category
                   %small.error Please enter some tags
