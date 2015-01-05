@@ -1,7 +1,7 @@
 module NewspressoForum
   class CommentsController < ::ApplicationController
     authorize_resource only: [:new, :edit, :update, :create]
-    before_action :set_topic
+    before_action :set_topic, except: [:edit, :update]
     before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
     # GET /comments
