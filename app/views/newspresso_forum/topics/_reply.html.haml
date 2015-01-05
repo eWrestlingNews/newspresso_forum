@@ -9,7 +9,7 @@
       - if resource.user.present?
         .left
           = link_to main_app.user_path(resource.user) do
-            = user_image_tag(current_user, {width: 18, height: 18, class: "hide-for-large-up"})
+            = user_image_tag(resource.user, {width: 18, height: 18, class: "hide-for-large-up"})
             = resource.user.name
       .right
         %ul.no-bullet.inline-list{style: "overflow:visible;"}
