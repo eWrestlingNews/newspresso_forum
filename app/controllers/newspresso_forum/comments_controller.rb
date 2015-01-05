@@ -38,7 +38,7 @@ module NewspressoForum
     # PATCH/PUT /comments/1
     def update
       if @comment.update(comment_params)
-        redirect_to @comment, notice: 'Comment was successfully updated.'
+        redirect_to topic_path(@comment.topic_id), notice: 'Comment was successfully updated.'
       else
         render :edit
       end
