@@ -3,6 +3,7 @@ module NewspressoForum
     authorize_resource only: [:new, :edit, :update, :create]
     before_action :set_topic, except: [:edit, :update]
     before_action :set_comment, only: [:show, :edit, :update, :destroy]
+    before_action :set_topic_from_comment, only: [:edit, :update]
 
     # GET /comments
     def index
@@ -38,7 +39,7 @@ module NewspressoForum
     # PATCH/PUT /comments/1
     def update
       if @comment.update(comment_params)
-        redirect_to topic_path(@comment.topic_id), notice: 'Comment was successfully updated.'
+        redirect_to @topic, notice: 'Comment was successfully updated.'
       else
         render :edit
       end
@@ -58,6 +59,10 @@ module NewspressoForum
 
       def set_topic
         @topic = Topic.friendly.find(params[:topic_id])
+      end
+
+      def set_topic_from_comment
+        @topic = Topic.friendly.find(@comment.topic_id)
       end
 
       # Only allow a trusted parameter "white list" through.
