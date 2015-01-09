@@ -1,6 +1,6 @@
 - content_for :content do
   .row
-    .content-wrap.columns.medium-10.large-10
+    .content-wrap.columns
       .panel
         %dl.tabs
           %select.forum-tag-select.right{onchange: "this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);"}
@@ -42,11 +42,6 @@
           = paginate @topics, :param_name => :page
           = link_to "Create New Topic", new_topic_path, class: "button success"
 
-
-    - desktop_only do
-      .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2
-        .ad-widget.tower-ad
-          = image_tag "http://placehold.it/160x600"
 
 - set_page_meta(@title, @title, @keywords)
 = link_to 'New Topic', new_topic_path, class: "button"

@@ -25,15 +25,15 @@
                   %small.error Please enter a title
                 .content-blocks
                   .block.text-item{type: "text", data: {height: 250}}
-                    %h5 Summary
                     = find_and_preserve "<textarea class='content-body' id='topic_body' name='topic[body]' style='min-height:80px' required>#{@topic.body}</textarea>"
             .row
               .columns.large-8
                 .field
                   %h5 Category:
-                  %select.post-category-input{id: "topic_tag_list", name: "topic[tag_list]", type: "text", placeholder: "Enter comma-separated list of tags", required: true}
-                    - @categories.each do |category|
-                      %option{value: category.parameterize, selected: ("selected" if @topic.tag_list == category)}= category
+                  %select.post-category-input{id: "topic_tag_list", name: "topic[tag_list]", type: "text", required: true}
+                    - ["WWE", "- RAW", "- SmackDown", "- Main Event", "TNA", "- iMPACT", "PPV", "MMA/UFC", "ROH", "Indie", "Tea Lounge"].each do |category|
+                      %option{value: "#{category.gsub('- ','').parameterize}", selected: ("selected" if @category.present? && @category == category.gsub('- ','').parameterize)}= category
+
                   %small.error Please enter some tags
             .row
               .columns.large-6.medium-6
