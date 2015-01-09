@@ -1,7 +1,7 @@
 module NewspressoForum
   class TopicsController < ::ApplicationController
     authorize_resource only: [:new, :edit, :update, :create]
-    before_action :set_topic, except: [ :new, :index, :latest, :top ]
+    before_action :set_topic, except: [ :new, :create, :index, :latest, :top ]
     before_action :set_categories
 
     # GET /topics
