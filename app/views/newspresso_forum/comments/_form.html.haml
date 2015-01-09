@@ -1,8 +1,15 @@
 .posts.new
   = form_for ([@topic, @comment]) do |f|
-    .post-form
-      %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}
-      .content-blocks
-        .block.text-item{type: "text", data: {height: 100}}
-          = find_and_preserve "<textarea class='content-body' id='comment_body' name='comment[body]' style='min-height:80px' required>#{@comment.body}</textarea>"
-      = f.submit "Edit Reply", class: "button primary"
+    .row
+      .content-wrap.columns.large-9
+        .panel
+          .header.clearfix
+            %h4.left Edit Reply
+            - if @comment.topic_id.present?
+              = link_to raw("&laquo; Back"), @topic, class: "button small right"
+          .post-form.content
+            %input{:name => "authenticity_token", :type => "hidden", :value => form_authenticity_token}
+            .content-blocks
+              .block.text-item{type: "text", data: {height: 100}}
+                = find_and_preserve "<textarea class='content-body' id='comment_body' name='comment[body]' style='min-height:80px' required>#{@comment.body}</textarea>"
+            = f.submit "Edit Reply", class: "button primary"
