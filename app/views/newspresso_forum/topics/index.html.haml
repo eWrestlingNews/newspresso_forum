@@ -42,6 +42,13 @@
           = paginate @topics, :param_name => :page
           = link_to "Create New Topic", new_topic_path, class: "button success"
 
+          .warning
+            %strong
+              Looking for the
+              = link_to "old forum", "http://forum.ewrestlingnews.com/"
+              ?
+            You can still access it at:
+            = link_to "forum.ewrestlingnews.com", "http://forum.ewrestlingnews.com/"
 
 - set_page_meta(@title, @title, @keywords)
 = link_to 'New Topic', new_topic_path, class: "button"
