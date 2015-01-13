@@ -52,11 +52,6 @@
                   %h5 Post a Reply
                   %p Sign in to post a reply.
 
-    - desktop_only do
-      .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2
-        .ad-widget.tower-ad
-          = image_tag "http://placehold.it/160x600"
-
 
 - set_page_meta(@title, @title, @keywords)
 = link_to 'New Topic', new_topic_path, class: "button"
