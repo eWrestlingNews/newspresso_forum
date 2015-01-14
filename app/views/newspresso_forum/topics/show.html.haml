@@ -22,12 +22,11 @@
           - @topic.tags.each do |tag|
             = link_to tag.name, "#", class: "label secondary"
         %h3= @topic.title
-      %ul.no-bullet.topic-replies
-        %li.parent
+      .topic-replies
+        .parent
           = render partial: "reply", locals: {resource: @topic}
         - @topic.comments.each do |comment|
-          %li
-            = render partial: "reply", locals: {resource: comment}
+          = render partial: "reply", locals: {resource: comment}
 
       .reply-form.panel
         .content
