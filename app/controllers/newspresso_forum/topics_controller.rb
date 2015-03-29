@@ -42,7 +42,7 @@ module NewspressoForum
 
     # GET /topics/new
     def new
-      @topic = Topic.new(params["topic"])
+      @topic = Topic.new
     end
 
     # GET /topics/1/edit
@@ -54,11 +54,11 @@ module NewspressoForum
       @topic = Topic.new(topic_params)
       @topic.user = current_user
 
-      if verify_recaptcha(:model => @topic) && @topic.save
+      if @topic.save
         award_points(10)
         redirect_to @topic, notice: 'Topic was successfully created.'
       else
-        redirect_to new_topic_url(request.parameters)
+        render :new
       end
     end
 

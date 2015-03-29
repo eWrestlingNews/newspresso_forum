@@ -31,15 +31,10 @@
                 .field
                   %h5 Category:
                   %select.post-category-input{id: "topic_tag_list", name: "topic[tag_list]", type: "text", required: true}
-                    - current_category = (@category || @topic.tag_list[0])
                     - ["WWE", "- RAW", "- SmackDown", "- Main Event", "TNA", "- iMPACT", "PPV", "MMA/UFC", "ROH", "Indie", "Tea Lounge"].each do |category|
-                      %option{value: "#{category.gsub('- ','').parameterize}", selected: ("selected" if current_category.present? && current_category.downcase == category.downcase.gsub('- ','').parameterize)}= category
+                      %option{value: "#{category.gsub('- ','').parameterize}", selected: ("selected" if @category.present? && @category == category.gsub('- ','').parameterize)}= category
 
                   %small.error Please enter some tags
-            .row
-              .columns.large-12
-                = recaptcha_tags
-                %br
             .row
               .columns.large-6.medium-6
                 - if @topic.id.present?
