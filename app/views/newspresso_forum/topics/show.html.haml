@@ -1,6 +1,6 @@
 - content_for :content do
   .row.topic
-    .content-wrap.columns.medium-10.large-10
+    .content-wrap.columns
       - if current_user && can?(:manage, @topic)
         .dropdown-link.right
           = link_to 'Mod', "#", class: "button tiny alert", style: "margin: 0;"
@@ -22,12 +22,11 @@
           - @topic.tags.each do |tag|
             = link_to tag.name, "#", class: "label secondary"
         %h3= @topic.title
-      %ul.no-bullet.topic-replies
-        %li.parent
+      .topic-replies
+        .parent
           = render partial: "reply", locals: {resource: @topic}
         - @topic.comments.each do |comment|
-          %li
-            = render partial: "reply", locals: {resource: comment}
+          = render partial: "reply", locals: {resource: comment}
 
       .reply-form.panel
         .content
@@ -51,11 +50,6 @@
                 - else
                   %h5 Post a Reply
                   %p Sign in to post a reply.
-
-    - desktop_only do
-      .sidebar-wrap.columns.show-for-medium-up.medium-2.large-2
-        .ad-widget.tower-ad
-          = image_tag "http://placehold.it/160x600"
 
 
 - set_page_meta(@title, @title, @keywords)

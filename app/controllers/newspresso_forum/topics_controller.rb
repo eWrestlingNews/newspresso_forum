@@ -1,7 +1,7 @@
 module NewspressoForum
   class TopicsController < ::ApplicationController
     authorize_resource only: [:new, :edit, :update, :create]
-    before_action :set_topic, except: [ :new, :index, :latest, :top ]
+    before_action :set_topic, except: [ :new, :create, :index, :latest, :top ]
     before_action :set_categories
 
     # GET /topics
@@ -42,7 +42,7 @@ module NewspressoForum
 
     # GET /topics/new
     def new
-      @topic = Topic.new
+      @topic = Topic.new(params["topic"])
     end
 
     # GET /topics/1/edit
@@ -54,11 +54,11 @@ module NewspressoForum
       @topic = Topic.new(topic_params)
       @topic.user = current_user
 
-      if @topic.save
+      if verify_recaptcha(:model => @topic) && @topic.save
         award_points(10)
         redirect_to @topic, notice: 'Topic was successfully created.'
       else
-        render :new
+        redirect_to new_topic_url(request.parameters)
       end
     end
 
